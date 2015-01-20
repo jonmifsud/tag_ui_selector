@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="tag_ui_selector" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Tag UI: Selector</name>
+	<description>Search for already used tags and create new ones using the same UI as the Association UI.</description>
+	<repo type="github">https://github.com/jonmifsud/tag_ui_selector</repo>
+	<types>
+		<type>Interface</type>
+	</types>
+	<authors>
+		<author>
+			<name github="jonmifsud" symphony="gunglien">Jon Mifsud</name>
+			<website>http://jonmifsud.com</website>
+		</author>
+	</authors>
+	<dependencies>
+		<dependency version="1.1.1">association_ui_selector</dependency>
+	</dependencies>
+	<releases>
+		<release version="1.0.0" date="2014-08-13" min="2.5">
+			- First release
+			- Based on Nils Association UI: Selector
+		</release>
+	</releases>
+</extension>
