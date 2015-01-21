@@ -16,7 +16,7 @@
 		<dependency version="1.1.1">association_ui_selector</dependency>
 	</dependencies>
 	<releases>
-		<release version="1.0.0" date="2014-08-13" min="2.5">
+		<release version="1.0.0" date="2015-01-21" min="2.5" max='2.6.x'>
 			- First release
 			- Based on Nils Association UI: Selector
 		</release>
