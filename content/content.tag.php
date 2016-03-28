@@ -87,7 +87,7 @@ Class contentExtensionTag_ui_selectorTag extends JSONPage
 
             // Build query
             $query = sprintf(
-                "SELECT ed.* from tbl_entries_data_%d AS ed %s WHERE (%s) %s GROUP BY `ed`.`value` %s;",
+                "SELECT `ed`.`handle`,`ed`.`value`, count(handle) as `count` from tbl_entries_data_%d AS ed %s WHERE (%s) %s GROUP BY `ed`.`handle`, `ed`.`value` ORDER BY `count` DESC %s;",
                 $field_id,
                 $joins,
                 implode($where, " OR "),
@@ -97,7 +97,7 @@ Class contentExtensionTag_ui_selectorTag extends JSONPage
             
         } else {
             $query = sprintf(
-                "SELECT ed.* from tbl_entries_data_%d AS ed %s WHERE 1 %s GROUP BY `ed`.`value` %s;",
+                "SELECT `ed`.`handle`,`ed`.`value`, count(handle) as `count` from tbl_entries_data_%d AS ed %s WHERE 1 %s GROUP BY `ed`.`handle`, `ed`.`value` ORDER BY `count` DESC %s;",
                 $field_id,
                 $joins,
                 $whereFilters,
@@ -116,9 +116,10 @@ Class contentExtensionTag_ui_selectorTag extends JSONPage
             foreach ($data as $field_data) {
                 $entry_id = $field_data['entry_id'];
                 
-                $this->_Result['values'][$field_data['handle']] = $field_data['value'];
+                $this->_Result['values'][$field_data['value']] = $field_data['value'] . " ({$field_data['count']})";
             }
         }
+
     }
 
 }

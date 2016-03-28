@@ -159,9 +159,9 @@
 
 					$.each(result.values, function(id, data) {
 						values.push({
-							value: data,
+							value: id,
 							text: data,
-							id: data
+							id: id
 						});
 					});
 
