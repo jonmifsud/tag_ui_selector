@@ -157,15 +157,21 @@
 				success: function(result) {
 					var values = [];
 
-					$.each(result.values, function(id, data) {
-						values.push({
-							value: id,
-							text: data,
-							id: id
-						});
-					});
+					if(typeof(result.values) == "object"){
 
-					callback(values);
+						$.each(result.values, function(id, data) {
+							values.push({
+								value: id,
+								text: data,
+								id: id
+							});
+						});
+
+						callback(values);
+					}
+					else{
+						return;
+					}
 				}
 			});
 		};
