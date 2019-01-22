@@ -111,6 +111,10 @@
 			selectize = storage[0].selectize;
 			selectize.$control_input.attr('placeholder', Symphony.Language.get('Search and select') + ' …');
 
+			if(fieldId == 29){ //disable 'create' (tag's field)
+				delete selectize.settings.create;
+			}
+
 			// Don't auto-focus the input in multiple mode
 			if(storage.is('[multiple]')) {
 				selectize.$control.off('mousedown');
