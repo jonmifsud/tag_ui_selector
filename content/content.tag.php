@@ -12,6 +12,7 @@ Class contentExtensionTag_ui_selectorTag extends JSONPage
         $search = General::sanitize($_GET['query']);
         $limit = intval(General::sanitize($_GET['limit']));
         $filters = $_GET['filter'];
+        $handle = $_GET['handle'];
 
         // Set limit
         if ($limit === 0) {
@@ -23,14 +24,14 @@ Class contentExtensionTag_ui_selectorTag extends JSONPage
         }
 
         foreach($field_ids as $field_id) {
-            $this->get($database, intval($field_id), $search, $max, $filters);
+            $this->get($database, intval($field_id), $search, $max, $filters, $handle);
         }
 
         // Return results
         return $this->_Result;
     }
 
-    private function get($database, $field_id, $search, $max, $filters)
+    private function get($database, $field_id, $search, $max, $filters, $handle = false)
     {
 
         if (!empty($filters)) {
@@ -115,8 +116,13 @@ Class contentExtensionTag_ui_selectorTag extends JSONPage
 
             foreach ($data as $field_data) {
                 $entry_id = $field_data['entry_id'];
+
+                if($handle || $handle == "true"){
+                    $this->_Result['values'][$field_data['handle']] = $field_data['value'] . " ({$field_data['count']})";
+                } else {
+                    $this->_Result['values'][$field_data['value']] = $field_data['value'] . " ({$field_data['count']})";
+                }                
                 
-                $this->_Result['values'][$field_data['value']] = $field_data['value'] . " ({$field_data['count']})";
             }
         }
 
